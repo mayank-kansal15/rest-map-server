@@ -1,0 +1,11 @@
+<md-content layout-padding>
+    <form action="/routes" method="post">
+        <md-input-container style="width: 100%">
+            <label>URL</label>
+            <input ng-model="route.url" name="url">
+        </md-input-container>
+        <textarea ng-model="route.mockData" name="mockData" class="mock-data-field" placeholder="Enter mock JSON data"></textarea>
+        <md-button ng-click="saveRoute()" class="md-raised md-primary save-route-btn">Save</md-button>
+        <md-button ng-click="saveRoute()" class="md-raised md-primary save-route-btn">Save</md-button>                                             
+    </form>
+</md-content>

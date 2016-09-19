@@ -4,6 +4,7 @@
        <title>Mock Server</title>
        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
+       <link rel="stylesheet" href="./css/style.css" type="text/css">
    </head>
    <body ng-controller="MainController">
         <md-toolbar>
@@ -18,19 +19,21 @@
         <div layout="row" layout-align="start stretch" style="height: 90%">
             <div flex="20" style="background-color: #D8DCF2;">
                 <md-list>
-                    <md-list-item ng-click="null">One</md-list-item>
-                    <md-list-item ng-click="null">Two</md-list-item>
-                    <md-list-item ng-click="null">Three</md-list-item>
+                    <md-list-item ng-repeat="route in routes" ng-click="loadRoute(route)">
+                        <span ng-bind="route.url"></span>
+                    </md-list-item>
                 </md-list>
-                <md-button class="md-raised" style="width: 100%; margin: 0px; height: 40px; font-weight: bold;">Add Route</md-button>
+                <md-button ng-click="addNewRoute()" class="md-raised add-route-btn">Add Route</md-button>
             </div>
-            <div flex="80"></div>
+            <div flex="80">
+                <ng-include src="'./views/add-route-form.html'"></ng-include>
+            </div>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-aria.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-messages.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
-        <script src="/js/main.js"></script>
+        <script src="./js/main.js"></script>
    </body>
 </html>
