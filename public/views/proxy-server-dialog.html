@@ -1,0 +1,31 @@
+<md-dialog class="setting-dialog-width">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>
+                <span>Global Proxy Server Setting</span>
+            </h2>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div class="md-dialog-content" style="padding-bottom: 0px;">
+            <md-input-container class="setting-input-container">
+                <label>Server URL</label>
+                <input ng-model="proxy.url">
+            </md-input-container>
+            <br />
+            <md-input-container class="setting-input-container">
+                <label>Username</label>
+                <input ng-model="proxy.username">
+            </md-input-container>
+            <br />
+            <md-input-container class="setting-input-container">
+                <label>Password</label>
+                <input type="password" ng-model="proxy.password">
+            </md-input-container>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions>
+        <md-button ng-click="saveSettings()" class="md-raised md-primary">Save</md-button>
+        <md-button ng-click="cancelDialog()" class="md-raised md-primary">Cancel</md-button>
+    </md-dialog-actions>
+</md-dialog>

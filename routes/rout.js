@@ -1,6 +1,6 @@
 module.exports = function(routesList, lastRouteID) {
     var express = require("express");
-    var jsonfile = require('jsonfile')
+    var jsonfile = require('jsonfile');
     var router = express.Router();
 
 
@@ -13,6 +13,7 @@ module.exports = function(routesList, lastRouteID) {
         routesList.push({
             url: req.body.url,
             mockData: req.body.mockData,
+            mockType: req.body.mockType,
             id: lastRouteID
         });
         persistRoutesIntoFile();
@@ -29,6 +30,7 @@ module.exports = function(routesList, lastRouteID) {
             routesList.push({
                 id: routeId,
                 url: req.body.url,
+                mockType: req.body.mockType,
                 mockData: req.body.mockData
             });
             persistRoutesIntoFile();
@@ -61,7 +63,7 @@ module.exports = function(routesList, lastRouteID) {
         var file = 'routesData.json';
         jsonfile.writeFile(file, routesList, function (err) {
             console.error(err);
-        })
+        });
     }
 
     return router;

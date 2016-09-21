@@ -13,7 +13,9 @@
                     <span>Rest Proxy Server</span>
                 </h2>
                  <span flex></span>
-                <i class="fa fa-cog" aria-hidden="true"></i>
+                 <md-button ng-click="openDialog($event)" class="md-icon-button">
+                     <i style="font-size: 25px;" class="fa fa-cog" aria-hidden="true"></i>
+                 </md-button>
             </div>
         </md-toolbar>
         <div layout="row" layout-align="start stretch" style="height: 90%">
@@ -35,7 +37,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-messages.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
         <script src="./js/app.js"></script>
-        <script src="./js/routeService.js"></script>
-        <script src="./js/mainController.js"></script>
+        <script src="./js/services/routeService.js"></script>
+        <script src="./js/services/proxy-server-setting-service.js"></script>
+        <script src="./js/controllers/proxy-server-dialog-controller.js"></script>
+        <script src="./js/controllers/mainController.js"></script>
    </body>
 </html>

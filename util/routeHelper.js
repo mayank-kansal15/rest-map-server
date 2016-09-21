@@ -6,7 +6,7 @@ module.exports = {
         var routesData = [];
         if(fs.existsSync('routesData.json')){
             var data = jsonfile.readFileSync('routesData.json');
-            var routesData = data || [];
+            routesData = data || [];
         }
         return routesData;
     },

@@ -5,13 +5,15 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var routeHelper = require("./util/routeHelper");
+var proxySettingHelper = require("./util/proxySettingHelper");
 var arguments = require("./util/argsParser")();
 var proxyRouteHandler = require("./routes/proxyRouter");
 
+var proxySettings = proxySettingHelper.loadIntitialSettings();
 var routesData = routeHelper.loadIntitialRoutes();
 var lastRouteID = routeHelper.getMaxIDValue(routesData);
 var routRouter = require("./routes/rout.js")(routesData, lastRouteID);
-
+var proxySettingRouter = require("./routes/proxySettingRouter")(proxySettings);
 
 var app = express();
 
@@ -25,7 +27,9 @@ app.use("/setup-routes",express.static(path.join(__dirname, 'public')));
 app.use(express.static(arguments.dirPath));
 
 app.use("/routes", routRouter);
+app.use("/proxy-setting", proxySettingRouter);
 app.use(proxyRouteHandler(routesData));
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

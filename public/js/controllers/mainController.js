@@ -1,4 +1,5 @@
-angular.module("app").controller("MainController", ["$scope", "routeService", function($scope, routeService) {
+angular.module("app").controller("MainController", 
+["$scope", "routeService","$mdDialog", function($scope, routeService, $mdDialog) {
     $scope.routes = [];
     $scope.route = {};
 
@@ -10,15 +11,15 @@ angular.module("app").controller("MainController", ["$scope", "routeService", fu
     }
     getRoutes();
 
-    $scope.addRoute = function(url, mockData) {
-        routeService.addRoute(url, mockData).then(function(success) {
+    $scope.addRoute = function(routeData) {
+        routeService.addRoute(routeData).then(function(success) {
             $scope.routes = success.data;
             $scope.route = {};
         });
     };
 
-    $scope.modifiRoute = function(id, url, mockData) {
-        routeService.modifiRoute(id, url, mockData).then(function(success) {
+    $scope.modifyRoute = function(routeData) {
+        routeService.modifyRoute(routeData).then(function(success) {
             $scope.routes = success.data;
             $scope.route = {};
         });
@@ -32,9 +33,9 @@ angular.module("app").controller("MainController", ["$scope", "routeService", fu
 
     $scope.saveRoute = function() {
         if($scope.route.id) {
-            $scope.modifiRoute($scope.route.id, $scope.route.url, $scope.route.mockData);
+            $scope.modifyRoute($scope.route);
         } else {
-            $scope.addRoute($scope.route.url, $scope.route.mockData);
+            $scope.addRoute($scope.route);
         }
     };
 
@@ -44,5 +45,13 @@ angular.module("app").controller("MainController", ["$scope", "routeService", fu
 
     $scope.loadRoute = function(routeData) {
         $scope.route = routeData;
+    };
+
+    $scope.openDialog = function($event) {
+        $mdDialog.show({
+            targetEvent: $event,
+            templateUrl: "./views/proxy-server-dialog.html",
+            controller: "proxyServerDialogCtrl",
+        });
     };
 }]);

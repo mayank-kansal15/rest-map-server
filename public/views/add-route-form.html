@@ -4,7 +4,18 @@
             <label>URL</label>
             <input ng-model="route.url">
         </md-input-container>
-        <textarea ng-model="route.mockData" class="mock-data-field" placeholder="Enter mock JSON data"></textarea>
+        <md-input-container style="margin-bottom: 30px; width: 150px">
+            <label>Mocking Type</label>
+            <md-select ng-model="route.mockType">
+                <md-option value="mocked">Mocked</md-option>
+                <md-option value="remote">Remote</md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container style="width: 100%">
+            <label>Mock Data</label>
+            <textarea ng-model="route.mockData" md-no-resize max-rows="10" placeholder="Enter mock JSON data"></textarea>
+        </md-input-container>
+        
         <md-button ng-click="saveRoute()" class="md-raised md-primary save-route-btn">Save</md-button>
         <md-button ng-show="route.id > 0" ng-click="deleteRoute(route.id)" class="md-raised md-primary save-route-btn">Delete</md-button>                                             
     </form>

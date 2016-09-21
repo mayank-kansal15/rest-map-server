@@ -4,12 +4,12 @@ angular.module("app").factory("routeService", ["$http", function($http) {
         return $http.get("/routes");
     };
 
-    routeFactory.addRoute = function(url, routeData) {
-        return $http.post("/routes", {"url": url, "mockData": routeData});
+    routeFactory.addRoute = function(routeData) {
+        return $http.post("/routes", routeData);
     }
 
-    routeFactory.modifiRoute = function(routeId, url, routeData) {
-        return $http.put("/routes/" + routeId, {"url": url, "mockData": routeData});
+    routeFactory.modifyRoute = function(routeData) {
+        return $http.put("/routes/" + routeId, routeData);
     }
 
     routeFactory.deleteRoute = function(routeId) {
