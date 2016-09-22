@@ -11,7 +11,6 @@ angular.module("app").controller("proxyServerDialogCtrl",
 
     $scope.saveSettings = function() {
         proxyServerSettingService.setGlobalSetting($scope.proxy).then(function(success) {
-            console.log("setting saved success");
             closeDialog();
         }, function(error) {
             closeDialog();

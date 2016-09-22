@@ -14,6 +14,8 @@ module.exports = function(routesList, lastRouteID) {
             url: req.body.url,
             mockData: req.body.mockData,
             mockType: req.body.mockType,
+            overrideGlobalSetting: req.body.overrideGlobalSetting,
+            proxyUrl: req.body.proxyUrl,
             id: lastRouteID
         });
         persistRoutesIntoFile();
@@ -31,7 +33,9 @@ module.exports = function(routesList, lastRouteID) {
                 id: routeId,
                 url: req.body.url,
                 mockType: req.body.mockType,
-                mockData: req.body.mockData
+                mockData: req.body.mockData,
+                overrideGlobalSetting: req.body.overrideGlobalSetting,
+                proxyUrl: req.body.proxyUrl
             });
             persistRoutesIntoFile();
             res.status(200).json(routesList);

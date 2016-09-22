@@ -1,4 +1,4 @@
-angular.module("app").factory("routeService", ["$http", function($http) {
+angular.module("app").factory("mockRouteService", ["$http", function($http) {
     var routeFactory = {};
     routeFactory.getRoutes = function() {
         return $http.get("/routes");
@@ -9,7 +9,7 @@ angular.module("app").factory("routeService", ["$http", function($http) {
     }
 
     routeFactory.modifyRoute = function(routeData) {
-        return $http.put("/routes/" + routeId, routeData);
+        return $http.put("/routes/" + routeData.id, routeData);
     }
 
     routeFactory.deleteRoute = function(routeId) {

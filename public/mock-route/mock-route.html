@@ -1,0 +1,32 @@
+<md-content layout-padding>
+    <form>
+        <md-input-container style="width: 100%;">
+            <label>URL</label>
+            <input ng-model="route.url">
+        </md-input-container>
+        <div layout="row" layout-align="start center" ng-style="route.overrideGlobalSetting ? {} : {'margin-bottom':'30px'}">
+            <md-input-container style="width: 150px">
+                <label>Mocking Type</label>
+                <md-select ng-model="route.mockType">
+                    <md-option value="mocked">Mocked</md-option>
+                    <md-option value="remote">Remote</md-option>
+                </md-select>
+            </md-input-container>
+            <md-switch ng-model="route.overrideGlobalSetting" ng-show="route.mockType === 'remote'"
+             class="md-primary" style="margin-left: 100px;" aria-label="isOverrideGlobalSetting?">
+                Override Global Proxy Setting                
+            </md-switch>
+        </div>
+        <md-input-container style="width: 100%;" ng-if="route.mockType === 'remote' && route.overrideGlobalSetting">
+            <label>Proxy URL</label>
+            <input ng-model="route.proxyUrl">
+        </md-input-container>
+        <md-input-container style="width: 100%">
+            <label>Mock Data</label>
+            <textarea ng-model="route.mockData" md-no-resize max-rows="10" placeholder="Enter mock JSON data"></textarea>
+        </md-input-container>
+        
+        <md-button ng-click="saveRoute()" class="md-raised md-primary save-route-btn">Save</md-button>
+        <md-button ng-show="route.id > 0" ng-click="deleteRoute(route.id)" class="md-raised md-primary save-route-btn">Delete</md-button>                                             
+    </form>
+</md-content>

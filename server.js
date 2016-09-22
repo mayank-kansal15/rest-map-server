@@ -7,7 +7,8 @@ var bodyParser = require('body-parser');
 var routeHelper = require("./util/routeHelper");
 var proxySettingHelper = require("./util/proxySettingHelper");
 var arguments = require("./util/argsParser")();
-var proxyRouteHandler = require("./routes/proxyRouter");
+var mockedRouteHandler = require("./routes/mockedUrlRouter");
+var proxyUrlRouter = require("./routes/proxyUrlRouter");
 
 var proxySettings = proxySettingHelper.loadIntitialSettings();
 var routesData = routeHelper.loadIntitialRoutes();
@@ -28,8 +29,8 @@ app.use(express.static(arguments.dirPath));
 
 app.use("/routes", routRouter);
 app.use("/proxy-setting", proxySettingRouter);
-app.use(proxyRouteHandler(routesData));
-
+app.use(mockedRouteHandler(routesData));
+app.use(proxyUrlRouter(proxySettings));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

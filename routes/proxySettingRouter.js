@@ -15,8 +15,8 @@ module.exports = function(proxySettings) {
     router.post("/global", function(req, res) {
         proxySettings.global = {
             url: req.body.url,
-            username: req.body.username,
-            password: req.body.password
+            // username: req.body.username,
+            // password: req.body.password
         }
         persistSetting();
         res.status(201).send("");
