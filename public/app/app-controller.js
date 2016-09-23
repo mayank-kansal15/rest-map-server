@@ -4,8 +4,10 @@ angular.module("app").controller("appController",
 
     function getRoutes() {
         mockRouteService.getRoutes().then(function(success) {
-            console.log(success);
             $scope.routes = success.data;
+            $scope.routes.forEach(function(route) {
+                route.mockData = JSON.stringify(route.mockData, null, " ");
+            });
         });
     }
     getRoutes();
@@ -15,11 +17,11 @@ angular.module("app").controller("appController",
     });
 
     $scope.addNewRoute = function() {
-        $scope.$broadcast("selected-route-changed", {mockType: 'mocked', overrideGlobalSetting: false});
+        $scope.$broadcast(appConstantService.events.selectedRouteChanged, {mockType: 'mocked', overrideGlobalSetting: false});
     };
 
     $scope.loadRoute = function(routeData) {
-        $scope.$broadcast("selected-route-changed", routeData);
+        $scope.$broadcast(appConstantService.events.selectedRouteChanged, routeData);
     };
 
     $scope.openDialog = function($event) {

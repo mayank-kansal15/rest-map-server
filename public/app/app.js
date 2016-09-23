@@ -1,1 +1,1 @@
-angular.module("app", ['ngMaterial']);         
+angular.module("app", ['ngMaterial',"ngMessages"]);         

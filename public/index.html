@@ -27,7 +27,7 @@
                 </md-list>
                 <md-button ng-click="addNewRoute()" class="md-raised md-primary add-route-btn">Mock New Route</md-button>
             </div>
-            <div flex="80" ng-controller="mockRouteController">
+            <div flex="80" ng-controller="mockRouteController" ng-init="form={}">
                 <ng-include src="'./mock-route/mock-route.html'"></ng-include>
             </div>
         </div>

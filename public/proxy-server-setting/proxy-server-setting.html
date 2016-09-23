@@ -8,24 +8,30 @@
     </md-toolbar>
     <md-dialog-content>
         <div class="md-dialog-content" style="padding-bottom: 0px;">
-            <md-input-container class="setting-input-container">
-                <label>Server URL</label>
-                <input ng-model="proxy.url">
-            </md-input-container>
-            <!--<br />
-            <md-input-container class="setting-input-container">
-                <label>Username</label>
-                <input ng-model="proxy.username">
-            </md-input-container>
-            <br />
-            <md-input-container class="setting-input-container">
-                <label>Password</label>
-                <input type="password" ng-model="proxy.password">
-            </md-input-container>-->
+            <form name="proxySettingForm">
+                <md-input-container class="setting-input-container">
+                    <label>Server URL</label>
+                    <input ng-model="proxy.url"  name="proxyUrl" required ng-pattern="/^(https?:\/\/)/">
+                    <div ng-messages="proxySettingForm.proxyUrl.$error">
+                        <div ng-message="required">This is required!</div>
+                        <div ng-message="pattern">Invalid URL!</div>
+                    </div>
+                </md-input-container>
+                <!--<br />
+                <md-input-container class="setting-input-container">
+                    <label>Username</label>
+                    <input ng-model="proxy.username">
+                </md-input-container>
+                <br />
+                <md-input-container class="setting-input-container">
+                    <label>Password</label>
+                    <input type="password" ng-model="proxy.password">
+                </md-input-container>-->
+            </form>
         </div>
     </md-dialog-content>
     <md-dialog-actions>
-        <md-button ng-click="saveSettings()" class="md-raised md-primary">Save</md-button>
+        <md-button ng-click="saveSettings()" ng-disabled="proxySettingForm.$invalid" class="md-raised md-primary">Save</md-button>
         <md-button ng-click="cancelDialog()" class="md-raised md-primary">Cancel</md-button>
     </md-dialog-actions>
 </md-dialog>

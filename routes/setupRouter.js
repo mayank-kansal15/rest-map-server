@@ -28,15 +28,14 @@ module.exports = function(routesList, lastRouteID) {
         if(routeIndex === -1) {
             res.status(400).send(`No route exist for id ${routeId}`);
         } else {
-            routesList.splice(routeIndex, 1);
-            routesList.push({
+            routesList[routeIndex] = {
                 id: routeId,
                 url: req.body.url,
                 mockType: req.body.mockType,
                 mockData: req.body.mockData,
                 overrideGlobalSetting: req.body.overrideGlobalSetting,
                 proxyUrl: req.body.proxyUrl
-            });
+            };
             persistRoutesIntoFile();
             res.status(200).json(routesList);
         }

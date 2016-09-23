@@ -1,5 +1,7 @@
 angular.module("app").controller("mockRouteController", 
 ["$scope", "mockRouteService","$mdDialog", "appConstantService", function($scope, mockRouteService, $mdDialog, appConstantService) {
+    $scope.isError = false;
+
     setEmptyRoute();
 
     $scope.$on(appConstantService.events.selectedRouteChanged, function(event, route) {
@@ -28,6 +30,8 @@ angular.module("app").controller("mockRouteController",
     };
 
     $scope.saveRoute = function() {
+        $scope.route.mockData = JSON.parse($scope.route.mockData);
+        console.log($scope.route);
         if($scope.route.id) {
             $scope.modifyRoute($scope.route);
         } else {
@@ -35,8 +39,13 @@ angular.module("app").controller("mockRouteController",
         }
     };
 
-    $scope.loadRoute = function(routeData) {
-        $scope.route = routeData;
+    $scope.isInvalidJSON = function() {
+        try {
+            JSON.parse($scope.route.mockData);
+            $scope.form.mockNewRouteForm.mockData.$setValidity("pattern", true);
+        } catch(e) {    
+            $scope.form.mockNewRouteForm.mockData.$setValidity("pattern", false);
+        }
     };
 
     function setEmptyRoute(){

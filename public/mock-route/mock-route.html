@@ -1,8 +1,11 @@
 <md-content layout-padding>
-    <form>
+    <form name="form.mockNewRouteForm">
         <md-input-container style="width: 100%;">
-            <label>URL</label>
-            <input ng-model="route.url">
+            <label>Route</label>
+            <input ng-model="route.url" name="url" required>
+            <div ng-messages="form.mockNewRouteForm.url.$error">
+                <div ng-message="required">This is required!</div>
+            </div>
         </md-input-container>
         <div layout="row" layout-align="start center" ng-style="route.overrideGlobalSetting ? {} : {'margin-bottom':'30px'}">
             <md-input-container style="width: 150px">
@@ -12,21 +15,30 @@
                     <md-option value="remote">Remote</md-option>
                 </md-select>
             </md-input-container>
-            <md-switch ng-model="route.overrideGlobalSetting" ng-show="route.mockType === 'remote'"
+            <md-switch ng-model="route.overrideGlobalSetting" ng-if="route.mockType === 'remote'"
              class="md-primary" style="margin-left: 100px;" aria-label="isOverrideGlobalSetting?">
                 Override Global Proxy Setting                
             </md-switch>
         </div>
         <md-input-container style="width: 100%;" ng-if="route.mockType === 'remote' && route.overrideGlobalSetting">
             <label>Proxy URL</label>
-            <input ng-model="route.proxyUrl">
+            <input ng-model="route.proxyUrl" name="proxyUrl" required ng-pattern="/^(https?:\/\/)/">
+            <div ng-messages="form.mockNewRouteForm.proxyUrl.$error">
+                <div ng-message="required">This is required!</div>
+                <div ng-message="pattern">Invalid URL!</div>
+            </div>
         </md-input-container>
-        <md-input-container style="width: 100%">
-            <label>Mock Data</label>
-            <textarea ng-model="route.mockData" md-no-resize max-rows="10" placeholder="Enter mock JSON data"></textarea>
+        <md-input-container style="width: 100%" ng-if="route.mockType === 'mocked'">
+            <label>JSON Data</label>
+            <textarea ng-model="route.mockData" ng-change="isInvalidJSON()" name="mockData" required md-no-resize max-rows="10" 
+                placeholder="Enter mock JSON data"></textarea>
+            <div ng-messages="form.mockNewRouteForm.mockData.$error" ng-show="form.mockNewRouteForm.mockData.$dirty">
+                <div ng-message="required">This is required!</div>
+                <div ng-message="pattern">Invalid JSON!</div>
+            </div>
         </md-input-container>
         
-        <md-button ng-click="saveRoute()" class="md-raised md-primary save-route-btn">Save</md-button>
+        <md-button ng-click="saveRoute()" ng-disabled="form.mockNewRouteForm.$invalid" class="md-raised md-primary save-route-btn">Save</md-button>
         <md-button ng-show="route.id > 0" ng-click="deleteRoute(route.id)" class="md-raised md-primary save-route-btn">Delete</md-button>                                             
     </form>
 </md-content>

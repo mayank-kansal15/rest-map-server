@@ -7,6 +7,10 @@ module.exports = function(proxySetting) {
         }
         var url = proxySetting.global.url + req.url;
         console.log("Forwarding request to: " + url);
-        req.pipe(request(url)).pipe(res);
+        try {
+            req.pipe(request(url)).pipe(res);
+        } catch(e) {
+            console.log(e);
+        }
     };
 };  

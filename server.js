@@ -13,10 +13,15 @@ var proxyUrlRouter = require("./routes/proxyUrlRouter");
 var proxySettings = proxySettingHelper.loadIntitialSettings();
 var routesData = routeHelper.loadIntitialRoutes();
 var lastRouteID = routeHelper.getMaxIDValue(routesData);
-var routRouter = require("./routes/rout.js")(routesData, lastRouteID);
+var routRouter = require("./routes/setupRouter")(routesData, lastRouteID);
 var proxySettingRouter = require("./routes/proxySettingRouter")(proxySettings);
 
 var app = express();
+
+// TODO: Need to check in which scenarios uncaughtException exception can occour
+process.on('uncaughtException', function(err) {
+  console.log(err);
+});
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
