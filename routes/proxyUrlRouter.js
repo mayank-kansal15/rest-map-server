@@ -6,9 +6,11 @@ module.exports = function(proxySetting) {
             return next();
         }
         if(proxySetting.global === undefined) {
-            return res.status(404).send("Resource not found");
+            console.error("Global Proxy Server setting is not configured");
+            return res.status(404).send("Global Proxy Server setting is not configured");
         }
         var url = proxySetting.global.url + req.url;
+        url = url.replace(/([^:]\/)\/+/g, "$1") // replacing multiple slashes with one
         console.log("Forwarding request to: " + url);
         req.pipe(request(url)).pipe(res);
     };

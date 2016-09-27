@@ -19,6 +19,7 @@ module.exports = function(routeList) {
         }
         if(savedRoute.mockType === "remote" && savedRoute.overrideGlobalSetting === true) {
             var url = savedRoute.proxyUrl + req.url;
+            url = url.replace(/([^:]\/)\/+/g, "$1") // replacing multiple slashes with one
             console.log("Forwarding request to: " + url);
             req.pipe(request(url)).pipe(res);
         }

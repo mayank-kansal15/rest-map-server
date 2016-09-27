@@ -32,13 +32,13 @@
             <label>JSON Data</label>
             <textarea ng-model="route.mockData" ng-change="isInvalidJSON()" name="mockData" required md-no-resize max-rows="10" 
                 placeholder="Enter mock JSON data"></textarea>
-            <div ng-messages="form.mockNewRouteForm.mockData.$error" ng-show="form.mockNewRouteForm.mockData.$dirty">
+            <div ng-messages="form.mockNewRouteForm.mockData.$error">
                 <div ng-message="required">This is required!</div>
                 <div ng-message="pattern">Invalid JSON!</div>
             </div>
         </md-input-container>
         
-        <md-button ng-click="saveRoute()" ng-disabled="form.mockNewRouteForm.$invalid" class="md-raised md-primary save-route-btn">Save</md-button>
+        <md-button ng-click="saveRoute()" ng-disabled="form.mockNewRouteForm.$pristine || form.mockNewRouteForm.$invalid" class="md-raised md-primary save-route-btn">Save</md-button>
         <md-button ng-show="route.id > 0" ng-click="deleteRoute(route.id)" class="md-raised md-primary save-route-btn">Delete</md-button>                                             
     </form>
 </md-content>

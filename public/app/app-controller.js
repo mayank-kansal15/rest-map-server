@@ -5,15 +5,14 @@ angular.module("app").controller("appController",
     function getRoutes() {
         mockRouteService.getRoutes().then(function(success) {
             $scope.routes = success.data;
-            $scope.routes.forEach(function(route) {
-                route.mockData = JSON.stringify(route.mockData, null, " ");
-            });
+            stringifyRoutesMockData();
         });
     }
     getRoutes();
 
     $scope.$on(appConstantService.events.mockedRoutesChanged, function(event, routes) {
         $scope.routes = routes;
+        stringifyRoutesMockData();
     });
 
     $scope.addNewRoute = function() {
@@ -31,4 +30,12 @@ angular.module("app").controller("appController",
             controller: "proxyServerDialogCtrl",
         });
     };
+
+    function stringifyRoutesMockData() {
+        $scope.routes.forEach(function(route) {
+            if(route.mockData) {
+                route.mockData = JSON.stringify(route.mockData, null, " ");
+            }
+        });
+    }
 }]);

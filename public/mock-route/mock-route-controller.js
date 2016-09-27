@@ -1,37 +1,38 @@
 angular.module("app").controller("mockRouteController", 
 ["$scope", "mockRouteService","$mdDialog", "appConstantService", function($scope, mockRouteService, $mdDialog, appConstantService) {
-    $scope.isError = false;
-
-    setEmptyRoute();
+    $scope.form = {};
+    $scope.route = {mockType: 'mocked', overrideGlobalSetting: false};
 
     $scope.$on(appConstantService.events.selectedRouteChanged, function(event, route) {
-        $scope.route = route;
+        resetForm();
+        $scope.route = angular.copy(route);
     });
 
     $scope.addRoute = function(routeData) {
         mockRouteService.addRoute(routeData).then(function(success) {
             $scope.$emit(appConstantService.events.mockedRoutesChanged, success.data);
-            setEmptyRoute();
+                resetForm();
         });
     };
 
     $scope.modifyRoute = function(routeData) {
         mockRouteService.modifyRoute(routeData).then(function(success) {
             $scope.$emit(appConstantService.events.mockedRoutesChanged, success.data);
-            setEmptyRoute();
+                resetForm();
         });
     };
 
     $scope.deleteRoute = function(routeID) {
         mockRouteService.deleteRoute(routeID).then(function(success) {
             $scope.$emit(appConstantService.events.mockedRoutesChanged, success.data);
-            setEmptyRoute();
+            resetForm();
         });
     };
 
     $scope.saveRoute = function() {
-        $scope.route.mockData = JSON.parse($scope.route.mockData);
-        console.log($scope.route);
+        if($scope.route.mockData) {
+            $scope.route.mockData = JSON.parse($scope.route.mockData);
+        }
         if($scope.route.id) {
             $scope.modifyRoute($scope.route);
         } else {
@@ -48,7 +49,16 @@ angular.module("app").controller("mockRouteController",
         }
     };
 
-    function setEmptyRoute(){
+    function resetForm() {
         $scope.route = {mockType: 'mocked', overrideGlobalSetting: false};
+
+        $scope.form.mockNewRouteForm.url.$setValidity("required", true);
+        if($scope.form.mockNewRouteForm.mockData) {
+            $scope.form.mockNewRouteForm.mockData.$setValidity("required", true);
+            $scope.form.mockNewRouteForm.mockData.$setValidity("pattern", true);
+        }
+        $scope.form.mockNewRouteForm.$setPristine();
+        $scope.form.mockNewRouteForm.$setUntouched();
     }
+
 }]);

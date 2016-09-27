@@ -2,7 +2,6 @@ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var routeHelper = require("./util/routeHelper");
 var proxySettingHelper = require("./util/proxySettingHelper");
@@ -32,7 +31,6 @@ app.use(mockedRouteHandler(routesData));
 app.use(proxyUrlRouter(proxySettings));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
 
 app.use("/routes", routRouter);
 app.use("/proxy-setting", proxySettingRouter);
