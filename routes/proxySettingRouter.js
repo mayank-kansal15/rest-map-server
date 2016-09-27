@@ -14,9 +14,7 @@ module.exports = function(proxySettings) {
 
     router.post("/global", function(req, res) {
         proxySettings.global = {
-            url: req.body.url,
-            // username: req.body.username,
-            // password: req.body.password
+            url: req.body.url
         }
         persistSetting();
         res.status(201).send("");
@@ -28,17 +26,6 @@ module.exports = function(proxySettings) {
             console.error(err);
         });
     }
-
-    // function getSettingIndexByLink(link) {
-    //     var settingIndex = -1;
-    //     for(var i = 0; i < proxySettings.length; i++) {
-    //         if(proxySettings[i].link === link) {
-    //             settingIndex = i;
-    //             break;
-    //         }
-    //     }
-    //     return settingIndex;
-    // }
     
     return router;
 };

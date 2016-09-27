@@ -1,4 +1,4 @@
-var jsonfile = require('jsonfile')
+var jsonfile = require('jsonfile');
 var fs = require("fs");
 
 module.exports = {

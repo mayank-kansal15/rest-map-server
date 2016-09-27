@@ -1,10 +1,10 @@
 {
-  "name": "mockServer",
+  "name": "rest-map-server",
   "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
+  "bin": {
+    "map-server": "map-server.js"
   },
+  "private": true,
   "dependencies": {
     "body-parser": "~1.15.1",
     "debug": "~2.2.0",

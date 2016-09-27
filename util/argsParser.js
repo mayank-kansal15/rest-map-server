@@ -3,7 +3,7 @@ var fs = require("fs");
 module.exports = function() {
     if(process.argv.length !== 4) {
         console.log("Provide all required args");
-        console.log('Eg: node server.js portNumber "path to public like dir to serve"');
+        console.log('Usage: node server.js portNumber "path to public like dir to serve"');
         process.exit(1);
     }
 
