@@ -1,10 +1,24 @@
 {
   "name": "rest-map-server",
   "version": "1.0.0",
+  "main": "map-server.js",
   "bin": {
     "map-server": "map-server.js"
   },
-  "private": true,
+  "keywords": [
+    "rest",
+    "mocking",
+    "mock",
+    "proxy",
+    "server"
+  ],
+  "author": {
+    "name": "Mayank Kansal",
+    "email": "mayankkansal31@gmail.com"
+  },
+  "license": "MIT",
+  "preferGlobal": true,
+   "readmeFilename": "Readme.md",
   "dependencies": {
     "body-parser": "~1.15.1",
     "debug": "~2.2.0",

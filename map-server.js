@@ -28,7 +28,9 @@ process.on('uncaughtException', function(err) {
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use("/setup-routes",express.static(path.join(__dirname, 'public')));
-app.use(express.static(arguments.dirPath));
+if(arguments.dirPath) {
+  app.use(express.static(arguments.dirPath));
+}
 app.use(mockedRouteHandler(routesData));
 app.use(proxyUrlRouter(proxySettings));
 app.use(bodyParser.json());

@@ -1,25 +1,26 @@
 var fs = require("fs");
 
 module.exports = function() {
-    if(process.argv.length !== 4) {
-        console.log("Provide all required args");
-        console.log('Usage: node server.js portNumber "path to public like dir to serve"');
+    if(process.argv.length < 2 || process.argv.length > 3) {
+        console.error("Wrong command usage");
+        console.error('Usage: map-server port-number [public dir path to serve static files]');
         process.exit(1);
     }
+    var port = process.argv[1];
+    var dir = process.argv[2];
 
-    if(isNaN(process.argv[2])) {
+    if(isNaN(port)) {
         console.log("Provided port is not number");
         process.exit(1);
     }
-    var portNumber = Number(process.argv[2]);
 
-    if(!fs.existsSync(process.argv[3])) {
-        console.log("Provided dir path to serve files does not exist");
+    if(dir && !fs.existsSync(dir)) {
+        console.log("Provided dir path does not exist");
         process.exit(1);
     }
-    var dirPath = process.argv[3];
+
     return {
-        portNumber: Number(process.argv[2]),
-        dirPath: process.argv[3]
+        portNumber: Number(port),
+        dirPath: dir
     }
 };
