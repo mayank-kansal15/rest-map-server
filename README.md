@@ -1,5 +1,5 @@
 # rest-map-server
-rest-map-server => Rest Mock & Proxy Server
+rest-map-server =&gt; Rest Mock  &amp; Proxy Server
  
 rest-map-server help us to mock the REST API endpoints. It can be used to server static files from a dir.
  
