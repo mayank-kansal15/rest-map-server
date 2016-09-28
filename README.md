@@ -45,7 +45,7 @@ Mocked routes and target server setting will be saved in json file, in the same 
 API routes which are not mocked will be forwarded to the global target server and corrosponding response will be sent back.
 
 ## Serving static files
-If we goto any "http://localhost:8000/" and public dir is given then the index.html form the public dir will be loaded.
+If we goto "http://localhost:8000/" , and public dir is given then index.html from the public dir will be loaded.
 
 # License
 MIT [http://rem.mit-license.org](http://rem.mit-license.org)
