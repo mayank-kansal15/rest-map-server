@@ -1,6 +1,6 @@
 {
   "name": "rest-map-server",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "map-server.js",
   "bin": {
     "map-server": "map-server.js"
