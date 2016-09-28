@@ -1,16 +1,26 @@
 {
   "name": "rest-map-server",
-  "version": "1.0.2",
+  "version": "1.0.3",
+   "description": "Mock JSON response through REST routes",
   "main": "map-server.js",
   "bin": {
     "map-server": "map-server.js"
   },
   "keywords": [
-    "rest",
-    "mocking",
+    "JSON",
+    "server",
+    "fake",
+    "REST",
+    "API",
+    "prototyping",
     "mock",
-    "proxy",
-    "server"
+    "mocking",
+    "test",
+    "testing",
+    "rest",
+    "data",
+    "dummy",
+    "sandbox"
   ],
   "author": {
     "name": "Mayank Kansal",
@@ -18,7 +28,7 @@
   },
   "license": "MIT",
   "preferGlobal": true,
-   "readmeFilename": "Readme.md",
+  "readmeFilename": "Readme.md",
   "dependencies": {
     "body-parser": "~1.15.1",
     "debug": "~2.2.0",
@@ -27,5 +37,6 @@
     "morgan": "~1.7.0",
     "request": "^2.75.0",
     "serve-favicon": "~2.3.0"
-  }
+  },
+  "homepage": "https://github.com/mayank-kansal15/rest-map-server"
 }
