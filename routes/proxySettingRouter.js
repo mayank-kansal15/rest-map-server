@@ -23,6 +23,7 @@ module.exports = function(proxySettings) {
     function persistSetting() {
         var file = "proxy-server-settings.json";
         jsonfile.writeFile(file, proxySettings, function (err) {
+            console.log("Error occoured while saving global target server setting into file");
             console.error(err);
         });
     }

@@ -1,7 +1,7 @@
 {
   "name": "rest-map-server",
-  "version": "1.0.3",
-   "description": "Mock JSON response through REST routes",
+  "version": "1.0.4",
+  "description": "Mock REST API and make a proxy server in few clicks",
   "main": "map-server.js",
   "bin": {
     "map-server": "map-server.js"
@@ -28,7 +28,6 @@
   },
   "license": "MIT",
   "preferGlobal": true,
-  "readmeFilename": "Readme.md",
   "dependencies": {
     "body-parser": "~1.15.1",
     "debug": "~2.2.0",
@@ -38,5 +37,13 @@
     "request": "^2.75.0",
     "serve-favicon": "~2.3.0"
   },
-  "homepage": "https://github.com/mayank-kansal15/rest-map-server"
+  "homepage": "https://github.com/mayank-kansal15/rest-map-server",
+  "bugs": {
+    "url" : "https://github.com/mayank-kansal15/rest-map-server/issues",
+    "email" : "mayankkansal31@gmail.com"
+  },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/mayank-kansal15/rest-map-server.git"
+  }
 }

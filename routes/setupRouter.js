@@ -65,6 +65,7 @@ module.exports = function(routesList, lastRouteID) {
     function persistRoutesIntoFile() {
         var file = 'routesData.json';
         jsonfile.writeFile(file, routesList, function (err) {
+            console.log("Error occoured while saving routes data into file");
             console.error(err);
         });
     }

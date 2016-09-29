@@ -21,7 +21,10 @@ var app = express();
 
 // TODO: Need to check in which scenarios uncaughtException exception can occour
 process.on('uncaughtException', function(err) {
+  console.log("Some unhandled error occoured");
   console.log(err);
+  console.log("Stopping server");
+  process.exit(1);
 });
 
 // uncomment after placing your favicon in /public
@@ -70,4 +73,6 @@ app.use(function(err, req, res, next) {
   });
 });
 
-app.listen(arguments.portNumber);
+var mapServer = app.listen(arguments.portNumber, function() {
+  console.log(`map server is listening on port ${mapServer.address().port} ...`);
+});
