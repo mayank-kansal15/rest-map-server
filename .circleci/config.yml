@@ -1,0 +1,30 @@
+version: 2
+jobs:
+  ias_api_doc:
+    docker:
+      - image: circleci/node:4.8.2
+    working_directory: ~/project
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "~/project/server/alph2/ias/package.json" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+      - run: cd ~/project/server/alph2/ias && npm install
+      - save_cache:
+          paths:
+            - ~/project/server/alph2/ias/node_modules
+          key: v1-dependencies-{{ checksum "~/project/server/alph2/ias/package.json" }}
+      - run: cd ~/project/server/alph2/ias && npm run doc:build
+      - run: sudo apt-get update -y && sudo apt-get -y install rsync
+      - run: echo 'apidocs.alphonso.tv,209.240.97.239 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBHGfaz2oRpOWY7hths1cG0YKJJIMjv2tm+WsgqmAOUyGeu38vIt4AnwB5xsln1geTnlWlctLLiN1+zSFdqn7E9k=' >> ~/.ssh/known_hosts
+      - run: cd ~/project/server/alph2/ias && rsync -rze ssh docs/ alpha@apidocs.alphonso.tv:/mnt/alpha/apidocs/IAS
+workflows:
+  version: 2
+  all_api_docs_jobs:
+    jobs:
+      - ias_api_doc:
+          filters:
+            branches:
+              only: insights/release/4.0
