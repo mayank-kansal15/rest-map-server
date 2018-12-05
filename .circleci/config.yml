@@ -24,7 +24,4 @@ workflows:
   version: 2
   all_api_docs_jobs:
     jobs:
-      - ias_api_doc:
-          filters:
-            branches:
-              only: insights/release/4.0
+      - ias_api_doc
